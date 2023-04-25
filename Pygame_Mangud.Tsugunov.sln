@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Pygame_Mangud.Tsugunov", "Pygame_Mangud.Tsugunov\Pygame_Mangud.Tsugunov.pyproj", "{DEAFF91A-93E9-4FB2-9315-73437030B508}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEAFF91A-93E9-4FB2-9315-73437030B508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEAFF91A-93E9-4FB2-9315-73437030B508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CDA8E68C-390D-4239-B217-67D5987F7312}
+	EndGlobalSection
+EndGlobal
