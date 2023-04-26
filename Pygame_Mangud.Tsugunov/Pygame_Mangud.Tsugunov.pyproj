@@ -21,11 +21,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Juhtimine.py" />
+    <Compile Include="Mang.py" />
     <Compile Include="Pingpong.py" />
     <Compile Include="Pygame_Mangud.Tsugunov.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="123.png" />
+    <Content Include="amongus.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
