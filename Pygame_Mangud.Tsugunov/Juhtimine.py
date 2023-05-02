@@ -1,43 +1,59 @@
-#KEYDOWN
 import pygame
+import random
+
 pygame.init()
 
-red = [255,0,0]
-lBlue = [153, 204, 255]
+r = random.randint(0, 255)
+g = random.randint(0, 255)
+b = random.randint(0, 255)
 
-screenX= 640
+red = [r, g, b]
+lBlue = [153, 204, 255]
+black = [0, 0, 0]
+
+screenX = 640
 screenY = 480
-screen=pygame.display.set_mode([screenX,screenY])
-pygame.display.set_caption("Klaviatuuriga juhtimine")
+screen = pygame.display.set_mode([screenX, screenY])
+pygame.display.set_caption("Klaviatuuriga ja hiirega juhtimine")
 screen.fill(lBlue)
+
 clock = pygame.time.Clock()
 
-posX,posY=screenX/2, screenY/2
-speedX,speedY = 0,0
+ristkülik = pygame.Rect(10, 10, 640, 100)
+pygame.draw.rect(screen, red, ristkülik)
 
-gameover = False
-while not gameover:
+posX, posY = screenX / 2, screenY / 2
+speedX, speedY = 0, 0
+directionX, directionY = 0, 0
+
+while True:
     clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            gameover = True
-        elif event.type == pygame.K_RIGHT:
-            if event.key == pygame.K_RIGHT:
-                speedX = 3
-            elif event.key == pygame.K_LEFT:
-                speedX = -3
-            elif event.key == pygame.K_BACKSPACE:
-                speedY = -3
-            elif event.key == pygame.K_DOWN:
-                speedY = 3
-        elif event.type == pygame.KEYUP: #KEYUP
-            if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:#KEYUP
-                speedX = 0#KEYUP
-            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:#KEYUP
-                speedY = 0 #KEYUP
-    posX += speedX
-    posY += speedY
+            pygame.quit()
+            exit()
+    
+    mouseX, mouseY = pygame.mouse.get_pos()
+    posX, posY = mouseX, mouseY
+
+    if pygame.Rect(posX, posY, 30, 30).colliderect(ristkülik):
+        if posY + 15 < ristkülik.top + 5:
+            posY = ristkülik.top - 30
+        elif posY + 15 > ristkülik.bottom - 5:
+            posY = ristkülik.bottom
+    
+    if pygame.Rect(posX, posY, 30, 30).colliderect(pygame.Rect(0, 110, 10, screenY - 110)):
+        if posX < 5:
+            posX = 0
+        else:
+            posX = 35
+
+    if pygame.Rect(posX, posY, 30, 30).colliderect(pygame.Rect(screenX - 10, 110, 10, screenY - 110)):
+        if posX > screenX - 35:
+            posX = screenX - 30
+        else:
+            posX = screenX - 65
+    
     ruut = pygame.draw.rect(screen, red, [posX, posY, 30, 30])
     pygame.display.flip()
     screen.fill(lBlue)
-pygame.quit()
