@@ -11,6 +11,8 @@
     <OutputPath>.</OutputPath>
     <Name>Pygame_Mangud.Tsugunov</Name>
     <RootNamespace>Pygame_Mangud.Tsugunov</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <InterpreterId>Global|PythonCore|3.11</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,8 +31,17 @@
   <ItemGroup>
     <Content Include="123.png" />
     <Content Include="amongus.png" />
-    <Content Include="fon.png" />
+    <Content Include="fon.jpg" />
+    <Content Include="fonn.jpg" />
+    <Content Include="gameover.jpg" />
+    <Content Include="gameover.mp3" />
+    <Content Include="ping-pong.png" />
     <Content Include="pingpong.png" />
+    <Content Include="pong.ogg" />
+    <Content Include="youwin.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.11" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

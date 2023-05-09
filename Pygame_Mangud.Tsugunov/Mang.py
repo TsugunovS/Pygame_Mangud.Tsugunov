@@ -9,9 +9,6 @@ screenY = 480
 screen = pygame.display.set_mode((screenX, screenY))
 pygame.display.set_caption("Pingpong")
 
-pilt = pygame.image.load("123.png")
-
-
 #цвета
 lBlue = (173, 216, 230)
 black = (0, 0, 0)
@@ -42,6 +39,14 @@ while True:
         print("Valige loendist tase!")
 
 score=0
+background = pygame.image.load("fonn.jpg")
+
+#загрузка звука
+pong_sound = pygame.mixer.Sound("pong.ogg")
+gameover_sound = pygame.mixer.Sound("gameover.mp3")
+youwin_sound = pygame.mixer.Sound("youwin.ogg")
+
+gameover_image = pygame.image.load("gameover.jpg")
 
 #запуск игры
 gameover = False
@@ -77,27 +82,53 @@ while not gameover:
     if posX <= 0:
         posX = 0
         directionX = random.choice([1, 1])
-   
+        pong_sound.play()
+
     elif posX + 30 >= screenX:
         posX = screenX - 30
         directionX = random.choice([-1, -1])
-       
+        pong_sound.play()
+
     if posY <= 0:
         posY = 0
         directionY = random.choice([1, 1])
         score -=1
+        pong_sound.play()
+
     elif posY + 30 >= screenY:
         posY = screenY - 30
         directionY = random.choice([-1, -1])
         score -=1
+        pong_sound.play()
 
     #квадрат отталкивается от полосок
     if posY <= 30 and (posX + 30 >= polosa1 and posX <= polosa1 + 150):
         directionY = 1
         score +=1
+        pong_sound.play()
+
     elif posY + 30 >= screenY - 30 and (posX + 30 >= polosa2 and posX <= polosa2 + 150):
         directionY = -1
-        score +1
+        score +=1
+        pong_sound.play()
+
+
+    if score == -5:
+        gameover_sound.play()
+        screen.blit(gameover_image, (12, 50))
+        pygame.display.flip()
+        pygame.time.delay(4000)
+        gameover = True
+
+    if score == 5:
+        youwin_sound.play()
+        font = pygame.font.SysFont(None, 50)
+        text = font.render("You win!", True, black)
+        screen.blit(text, (screenX/2 - 75, screenY/2 - 25))
+        pygame.display.flip()
+        pygame.time.delay(3000) 
+        gameover = True
+
 
     #координаты полосок
     polosa1 += polosa_speed * polosa_direction
@@ -108,6 +139,7 @@ while not gameover:
     if random.randint(0, 639) == 0:
         directionX, directionY = random.choice([1, -1]), random.choice([1, -1])
 
+    screen.blit(background, (0, 0))
 
     #полоски и квадрат
     pygame.draw.rect(screen, black, [polosa1, 10, 150, 20])
@@ -120,7 +152,6 @@ while not gameover:
 
     pygame.display.flip()
     screen.fill(lBlue)
-    распиши
 pygame.quit()
 
 
